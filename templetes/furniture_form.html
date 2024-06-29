@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if form.instance.pk %}Edit Furniture{% else %}New Furniture{% endif %}</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Edit Furniture{% else %}New Furniture{% endif %}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'shop' %}">Cancel</a>
+</body>
+</html>

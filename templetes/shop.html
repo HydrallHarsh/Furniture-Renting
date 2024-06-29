@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop - Furniture Management</title>
+</head>
+
+<body>
+    <h1>Shop - Furniture Management</h1>
+
+    <!-- List all furniture items -->
+    <h2>Furniture List</h2>
+    <ul>
+        {% for furniture in furniture_list %}
+        <li>
+            <a href="{% url 'furniture_detail' furniture.pk %}">{{ furniture.furniture_type }}</a>
+            <a href="{% url 'furniture_edit' furniture.pk %}">(Edit)</a>
+            <a href="{% url 'furniture_delete_confirm' furniture.pk %}">(Delete)</a>
+            <a href="{% url 'add_to_cart' furniture.pk %}">(Add to Cart)</a>
+        </li>
+        {% empty %}
+        <li>No furniture available</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Create new furniture form -->
+    <h2>Add New Furniture</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'furniture_create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+    <!-- Detail view of furniture -->
+    {% if furniture_detail %}
+    <h2>Furniture Detail</h2>
+    <h3>{{ furniture_detail.furniture_type }}</h3>
+    <p>Description: {{ furniture_detail.description }}</p>
+    <p>Owner: {{ furniture_detail.owner }}</p>
+    <p>Price per day: ${{ furniture_detail.average_cost }}</p>
+    <p>Minimum Rental Days: {{ furniture_detail.minimum_rental_days }}</p>
+    <img src="{{ furniture_detail.image_url }}" alt="{{ furniture_detail.furniture_type }}">
+    <br>
+    <a href="{% url 'furniture_edit' furniture_detail.pk %}">Edit</a>
+    <form method="post" action="{% url 'furniture_delete' furniture_detail.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    {% endif %}
+
+    <!-- Edit furniture form -->
+    {% if furniture_edit %}
+    <h2>Edit Furniture</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'furniture_edit' furniture_edit.pk %}">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    {% endif %}
+
+    <!-- Delete confirmation -->
+    {% if furniture_delete_confirm %}
+    <h2>Delete Confirmation</h2>
+    <p>Are you sure you want to delete "{{ furniture_delete_confirm.furniture_type }}"?</p>
+    <form method="post" action="{% url 'furniture_delete' furniture_delete_confirm.pk %}">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+    </form>
+    {% endif %}
+
+    <!-- Back to shop link -->
+    <br>
+    <a href="{% url 'shop' %}">Back to Shop</a>
+</body>
+
+</html>

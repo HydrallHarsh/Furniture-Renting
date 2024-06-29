@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ "Hello" }}</title>
+</head>
+
+<body>
+    <h1>{{ furniture.owner }}</h1>
+    <p>{{ furniture.description }}</p>
+    <p>Price per day: ${{ furniture.price_per_day }}</p>
+    <p>Available: {{ furniture.available }}</p>
+    <img src="{{ furniture.image.url }}" alt="{{ Hello }}">
+    <br>
+    <a href="{% url 'furniture_update' furniture.pk %}">Edit</a>
+    <form method="post" action="{% url 'furniture_delete' furniture.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <br>
+    <a href="{% url 'shop' %}">Back to Shop</a>
+</body>
+
+</html>

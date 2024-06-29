@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete {{ furniture.furniture_type }}</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete {{ furniture.furniture_type }}?</h1>
+    <form method="post" action="{% url 'furniture_delete' furniture.pk %}">
+        {% csrf_token %}
+        <button type="submit">Confirm</button>
+    </form>
+    <a href="{% url 'furniture_detail' furniture.pk %}">Cancel</a>
+</body>
+</html>
