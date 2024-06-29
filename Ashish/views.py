@@ -2,9 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from templetes import *
+from django.shortcuts import render
+from Ashish.models import Furniture
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    furniture_list = Furniture.objects.all()
+    print(furniture_list)
+    return render(request, 'home.html', {'furniture_list': furniture_list})
 
 def signup(request):
     return render(request, 'signup.html')
