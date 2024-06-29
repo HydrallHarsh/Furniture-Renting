@@ -3,6 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete {{ furniture.furniture_type }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Are you sure you want to delete {{ furniture.furniture_type }}?</h1>
