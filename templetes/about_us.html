@@ -7,25 +7,46 @@
   <div>
     <form class="d-flex flex-column">
       <label class="label" for="first-name">Your Name *</label>
-      <input id="first-name" type="text" name="first-name" placeholder="First name">
-      <input id="last-name" type="text" name="last-name" placeholder="Last name">
+      <input id="first-name" type="text" name="first-name" placeholder="First name" class="form-control mb-3">
+      <input id="last-name" type="text" name="last-name" placeholder="Last name" class="form-control mb-3">
       <label for="email">Email Address *</label>
-      <input id="email" type="text" name="email" placeholder="Eg. example@email.com">
+      <input id="email" type="email" name="email" placeholder="Eg. example@email.com" class="form-control mb-3">
       <label for="phone">Phone Number</label>
-      <input id="phone" type="text" name="phone" placeholder="Eg. +1 800 000000">
+      <input id="phone" type="tel" name="phone" placeholder="Eg. +1 800 000000" class="form-control mb-3">
       <label for="subject">Subject</label>
-      <select id="subject" name="subject">
+      <select id="subject" name="subject" class="form-control mb-3">
         <option value="complaint">Complaint</option>
         <option value="refund">Refund</option>
         <option value="quote">Quote</option>
       </select>
       <label for="message">Message *</label>
-      <textarea id="message" name="message" placeholder="Please enter your comments..."></textarea>
-      <div class="text-center p-5">
-        <br>
-        <button class="btn btn-secondary" type="submit">Send</button>
+      <textarea id="message" name="message" placeholder="Please enter your comments..." class="form-control mb-3"></textarea>
+      <div class="text-center">
+        <button class="btn btn-primary" type="submit">Send</button>
       </div>
     </form>
   </div>
 </div>
+<style>
+  .form-control {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #0056b3;
+  }
+</style>
 {% endblock %}
