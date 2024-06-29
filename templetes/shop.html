@@ -69,18 +69,45 @@
 
     <!-- List all furniture items -->
     <h2>Furniture List</h2>
-    <ul>
-        {% for furniture in furniture_list %}
-        <li>
-            <a href="{% url 'furniture_detail' furniture.pk %}">{{ furniture.furniture_type }}</a>
-            <a href="{% url 'furniture_edit' furniture.pk %}">(Edit)</a>
-            <a href="{% url 'furniture_delete_confirm' furniture.pk %}">(Delete)</a>
-            <a href="{% url 'add_to_cart' furniture.pk %}">(Add to Cart)</a>
-        </li>
-        {% empty %}
-        <li>No furniture available</li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Owner</th>
+                <th>Furniture Type</th>
+                <th>Company Name</th>
+                <th>Description</th>
+                <th>Average Cost</th>
+                <th>Minimum Rental Days</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for furniture in furniture_list %}
+            <tr>
+                <td>{{ furniture.owner }}</td>
+                <td>{{ furniture.furniture_type }}</td>
+                <td>{{ furniture.company_name }}</td>
+                <td>{{ furniture.description }}</td>
+                <td>${{ furniture.average_cost }}</td>
+                <td>{{ furniture.minimum_rental_days }} days</td>
+                <td><img style="width: 200px; height: 200px;" src="{{ furniture.image_url }}"
+                        alt="Image of {{ furniture.furniture_type }}"></td>
+                <td>
+                    <a href="{% url 'furniture_detail' furniture.pk %}">Detail</a> |
+                    <a href="{% url 'furniture_edit' furniture.pk %}">Edit</a> |
+                    <a href="{% url 'furniture_delete_confirm' furniture.pk %}">Delete</a> |
+                    <a href="{% url 'add_to_cart' furniture.pk %}">Add to Cart</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No furniture available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 
     <!-- Create new furniture form -->
     <h2>Add New Furniture</h2>
