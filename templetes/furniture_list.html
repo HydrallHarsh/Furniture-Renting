@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop - Furniture List</title>
+</head>
+<body>
+    <h1>Furniture List</h1>
+    <a href="{% url 'furniture_create' %}">Add New Furniture</a>
+    <ul>
+        {% for furniture in furniture_list %}
+        <li>
+            <a href="{% url 'furniture_detail' furniture.pk %}">{{ furniture.furniture_type }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
