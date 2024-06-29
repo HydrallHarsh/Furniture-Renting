@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+  Home
+{% endblock %}
+{% block body %}
+  <p>Hello, I am stating a new project call e-commarce website. This is home page.</p>
+{% endblock %}
+
+{% if user.is_authenticated %}
+ <a href="{% url 'logout' %}" >logout</a>
+{% else %}
+{% endif %}
